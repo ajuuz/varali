@@ -290,11 +290,11 @@ const LandingPage = () => {
                       {item.title}
                     </h1>
                     <p className="text-md sm:text-lg md:text-2xl mb-6">{item.subtitle}</p>
-                    <div className="flex items-center bg-white/95 rounded-full pl-4 pr-3 py-2">
+                    <div className="flex items-center bg-white/95  rounded-full pl-4  pr-5 py-2">
                       <input
                         type="text"
                         placeholder="discover your varali vibe..."
-                        className="rounded-full px-3 py-2 w-[260px] md:w-[360px] text-black focus:outline-none bg-transparent"
+                        className="rounded-full px-3 py-2 w-[260px] md:w-[600px] text-black focus:outline-none bg-transparent"
                         aria-label="Search Varali"
                         onFocus={() => autoplay.current.stop()} // stop on focus
                         onBlur={() => autoplay.current.reset()} // resume on blur
