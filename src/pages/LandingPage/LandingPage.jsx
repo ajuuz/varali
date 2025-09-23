@@ -476,7 +476,7 @@ const LandingPage = () => {
       {/* sixth section */}
       <section className="py-10 px-4 md:px-10 ">
         <div className="bg-gray-100 rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center space-x-4 flex-col sm:flex-row">
+          <div className="flex items-center space-x-4 flex-col sm:flex-row ">
             <h2 className="text-xl font-semibold flex items-center">
               <img
                 src="https://tse3.mm.bing.net/th/id/OIP.SqEICC59PL1VrdefhGEqqgHaCg?pid=Api&P=0&h=180"
