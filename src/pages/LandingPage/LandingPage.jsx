@@ -273,9 +273,9 @@ const LandingPage = () => {
             {carouselItems.map((item) => (
               <CarouselItem
                 key={item.id}
-                className="min-h-[43vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[90vh]"
+                className="min-h-[37vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[90vh]"
               >
-                <div className="relative h-[43vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] w-full">
+                <div className="relative h-[37vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] w-full">
                   <img
                     src={item.image || "/placeholder.svg"}
                     alt={item.title}
