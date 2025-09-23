@@ -286,10 +286,10 @@ const LandingPage = () => {
                     aria-hidden="true"
                   />
                   <div className="absolute inset-x-4 bottom-10 z-10 flex flex-col items-center justify-center text-center text-white">
-                    <h1 className="text-3xl md:text-5xl font-bold mb-2 text-balance">
+                    <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-2 text-balance">
                       {item.title}
                     </h1>
-                    <p className="text-lg md:text-2xl mb-6">{item.subtitle}</p>
+                    <p className="text-md sm:text-lg md:text-2xl mb-6">{item.subtitle}</p>
                     <div className="flex items-center bg-white/95 rounded-full pl-4 pr-3 py-2">
                       <input
                         type="text"
