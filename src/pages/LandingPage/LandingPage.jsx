@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import logo from "@/assets/logo.png";
 import heroSectionImg1 from "@/assets/Property 1=Default.png";
 import heroSectionImg2 from "@/assets/Property 1=Variant2.png";
-import heroSectionImg3 from "@/assets/Property 1=Variant2.png";
+import heroSectionImg3 from "@/assets/Property 1=Variant3.png";
 import varaliCollectionImg1 from "@/assets/varali-collection-img-1.png";
 import varaliCollectionImg2 from "@/assets/varali-collection-img-2.png";
 import varaliCollectionImg3 from "@/assets/varali-collection-img-3.png";
@@ -16,6 +16,7 @@ import instagram2 from "@/assets/instagram-2.png";
 import instagram3 from "@/assets/instagram-3.png";
 import instagram4 from "@/assets/instagram-4.png";
 import crafteBanner from "@/assets/crafterbanner.png";
+import footerimg from "@/assets/footerimg.png";
 import onamCollection from "@/assets/onam-collection.png";
 import { BiCaretDown, BiHeart, BiSearch, BiShoppingBag } from "react-icons/bi";
 import {
@@ -27,9 +28,24 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Instagram, Star } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Instagram,
+  Menu,
+  ShoppingCart,
+  Star,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ReviewCard } from "@/components/custom/ReviewCard";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const carouselItems = [
   {
@@ -95,7 +111,7 @@ const bestSellings = [
   },
 ];
 
-const images=[instagram1,instagram2,instagram3,instagram4]
+const images = [instagram1, instagram2, instagram3, instagram4];
 
 const reviews = [
   {
@@ -137,154 +153,253 @@ const reviews = [
 ];
 
 const LandingPage = () => {
+  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }))
   return (
     <div>
       {/* Header */}
-      <header className="bg-[#472478] py-3 flex justify-between items-center px-5">
-        <div>
-          <img className="h-10" src={logo} />
-        </div>
-        <nav className="flex gap-5 text-white">
-          <div className="text-sm font-medium">HOME</div>
-          <div className="text-sm font-medium">ONAM COLLECTIONS</div>
-          <div className="text-sm font-medium">MENS COLLECTIONS</div>
-          <div className="text-sm font-medium">WOMENS COLLECTIONS</div>
-          <div className="text-sm font-medium">SHOP ALL</div>
-        </nav>
-        <div className="bg-white p-1 rounded-lg flex gap-2 items-center text-[#472478]">
-          <BiHeart size={20} />
-          <BiShoppingBag />
-          <div className="flex items-center">
-            <h2>IN</h2>
-            <BiCaretDown />
+      <header className="bg-[#472478] text-white">
+        <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-6">
+          {/* Left: Logo */}
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Varali" className="h-8 w-auto" />
+          </div>
+
+          {/* Center: Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            <a href="#" className="text-sm font-medium">
+              HOME
+            </a>
+            <a href="#" className="text-sm font-medium">
+              ONAM COLLECTIONS
+            </a>
+            <a href="#" className="text-sm font-medium">
+              MENS COLLECTIONS
+            </a>
+            <a href="#" className="text-sm font-medium">
+              WOMENS COLLECTIONS
+            </a>
+            <a href="#" className="text-sm font-medium">
+              SHOP ALL
+            </a>
+          </nav>
+
+          {/* Right: Icons / Region */}
+          <div className="hidden md:flex bg-white text-[#472478] p-1 rounded-lg items-center gap-2">
+            <BiHeart size={20} aria-hidden="true" />
+            <BiShoppingBag size={22} aria-hidden="true" />
+            <div className="flex items-center">
+              <span className="text-xs font-semibold">IN</span>
+              <BiCaretDown aria-hidden="true" />
+            </div>
+          </div>
+
+          {/* Mobile: Sheet menu trigger */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className="p-2 rounded-md text-white hover:bg-white/10">
+                  {/* You can replace this with an icon like BiMenu */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className="w-72 bg-gradient-to-b from-[#472478] to-[#2d174e] text-white shadow-lg"
+              >
+                <SheetHeader>
+                  <SheetTitle className="text-white text-lg font-bold tracking-wide">
+                    Menu
+                  </SheetTitle>
+                </SheetHeader>
+
+                <nav className="mt-6 flex flex-col gap-2">
+                  {[
+                    "HOME",
+                    "ONAM COLLECTIONS",
+                    "MENS COLLECTIONS",
+                    "WOMENS COLLECTIONS",
+                    "SHOP ALL",
+                  ].map((item, i) => (
+                    <a
+                      key={i}
+                      href="#"
+                      className="relative text-sm font-medium px-3 py-2 rounded-md 
+                   hover:bg-white/10 hover:pl-4 transition-all duration-200"
+                    >
+                      {item}
+                      <span className="absolute bottom-0 left-3 w-0 h-[1.5px] bg-white transition-all duration-300 group-hover:w-[60%]" />
+                    </a>
+                  ))}
+                </nav>
+
+                <div className="mt-8 border-t px-2 border-white/20 pt-4 flex items-center justify-between">
+                  {/* Left Side */}
+                  <div className="flex gap-2 text-sm font-medium">
+                    <span className="flex items-center gap-1 bg-white/10 px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer hover:bg-white/20 transition">
+                      <Heart /> Wishlist
+                    </span>
+                    <span className="flex items-center gap-1 bg-white/10 px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer hover:bg-white/20 transition">
+                      <ShoppingCart /> Cart
+                    </span>
+                  </div>
+
+                  {/* Right Side */}
+                  <div className="flex items-center gap-1 bg-white/10 px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer hover:bg-white/20 transition">
+                    IN <span className="text-[10px]">▼</span>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
 
-      {/* Carousel */}
-      <Carousel
-        plugins={[
-          Autoplay({
-            delay: 4000,
-          }),
-        ]}
-        className="w-full h-[90vh]"
-      >
-        {/* Carousel */}
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 4000,
-            }),
-          ]}
-          className="w-full h-[100vh] relative"
-        >
+      <section aria-label="Hero carousel" className="relative">
+        <Carousel plugins={[autoplay.current]} className="w-full">
           <CarouselContent>
             {carouselItems.map((item) => (
-              <CarouselItem key={item.id}>
-                <div className="relative w-full h-[91vh]  flex justify-center">
-                  {/* Hero Image */}
+              <CarouselItem
+                key={item.id}
+                className="min-h-[43vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[90vh]"
+              >
+                <div className="relative h-[43vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] w-full">
                   <img
-                    src={item.image}
+                    src={item.image || "/placeholder.svg"}
                     alt={item.title}
-                    className="absolute inset-0 w-full object-contain"
+                    className="absolute inset-0 h- w-full object-cover"
                   />
-
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/20" />
-
-                  {/* Text Content */}
-                  <div className="absolute bottom-20  z-10 flex flex-col items-center justify-center text-center text-white px-4">
-                    <h1 className="text-3xl md:text-5xl font-bold mb-2">
+                  <div
+                    className="absolute inset-0 bg-black/30"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-x-4 bottom-10 z-10 flex flex-col items-center justify-center text-center text-white">
+                    <h1 className="text-3xl md:text-5xl font-bold mb-2 text-balance">
                       {item.title}
                     </h1>
                     <p className="text-lg md:text-2xl mb-6">{item.subtitle}</p>
-                    <div className="flex justify-center items-center bg-white rounded-4xl px-4">
+                    <div className="flex items-center bg-white/95 rounded-full pl-4 pr-3 py-2">
                       <input
                         type="text"
                         placeholder="discover your varali vibe..."
-                        className="rounded-full px-6 py-3 w-[300px] md:w-[400px] text-black"
+                        className="rounded-full px-3 py-2 w-[260px] md:w-[360px] text-black focus:outline-none bg-transparent"
+                        aria-label="Search Varali"
+                        onFocus={() => autoplay.current.stop()} // stop on focus
+                        onBlur={() => autoplay.current.reset()} // resume on blur
                       />
-                      <BiSearch size={25} className="text-black" />
+                      <BiSearch
+                        size={22}
+                        className="text-black"
+                        aria-hidden="true"
+                      />
                     </div>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
+
+          {/* Optional controls */}
+          <CarouselPrevious className="left-2 md:left-4" />
+          <CarouselNext className="right-2 md:right-4" />
         </Carousel>
-      </Carousel>
+      </section>
 
       <div
         style={{
           backgroundImage: `url(${onamCollection})`,
-          backgroundSize: "cover", // show entire image without cropping
-          backgroundRepeat: "no-repeat", // prevent tiling
-          backgroundPosition: "", // center the image
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
-        className="relative w-full mt-1 text-white flex justify-between items-center py-5"
+        className="relative w-full text-white py-8 px-4 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6"
       >
-        <div className="flex-1 px-10">
-          <h1 className="text-xl">Onam Collection</h1>
-          <p>
+        {/* Left Section */}
+        <div className="flex-1 text-center md:text-left">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">
+            Onam Collection
+          </h1>
+          <p className="text-sm md:text-base">
             Explore our exclusive Onam Collections, thoughtfully curated to
-            bring elegance and tradition together for this festive season
+            bring elegance and tradition together for this festive season.
           </p>
         </div>
 
-        <div className="text-center flex-1 flex items-center justify-around">
+        {/* Countdown Section */}
+        <div className="flex-1 flex justify-center md:justify-around text-center gap-4">
           <div>
-            <h4 className="text-2xl font-medium">28</h4>
-            <p>Days</p>
+            <h4 className="text-2xl md:text-3xl font-semibold">28</h4>
+            <p className="text-sm md:text-base">Days</p>
           </div>
           <div>
-            <h4 className="text-2xl font-medium">21</h4>
-            <p>Hours</p>
+            <h4 className="text-2xl md:text-3xl font-semibold">21</h4>
+            <p className="text-sm md:text-base">Hours</p>
           </div>
           <div>
-            <h4 className="text-2xl font-medium">14</h4>
-            <p>Minutes</p>
+            <h4 className="text-2xl md:text-3xl font-semibold">14</h4>
+            <p className="text-sm md:text-base">Minutes</p>
           </div>
           <div>
-            <h4 className="text-2xl font-medium">50</h4>
-            <p>Seconds</p>
+            <h4 className="text-2xl md:text-3xl font-semibold">50</h4>
+            <p className="text-sm md:text-base">Seconds</p>
           </div>
         </div>
 
-        <div className="flex-1 flex justify-center">
-          <Button className="bg-white hover:bg-white text-black">
+        {/* Button Section */}
+        <div className="flex-1 flex justify-center mt-4 md:mt-0">
+          <Button className="bg-white hover:bg-gray-200 text-black px-6 py-2">
             Shop Onam Collection
           </Button>
         </div>
       </div>
 
       {/* third section */}
-      <div className="py-15 flex flex-col gap-5">
-        <div>
-          <h1 className="text-center text-[#472478] text-xl font-semibold">
-            Varali Collection
+      <section className="py-10 md:py-14">
+        <div className="mb-5">
+          <h1 className="text-center text-xl md:text-2xl font-semibold">
+            Varali Collections
           </h1>
         </div>
-        <div className="relative w-full max-w-7xl mx-auto">
-          <Carousel opts={{ align: "start" }} className="w-full">
+
+        <div className="relative w-full max-w-7xl mx-auto px-4">
+          <Carousel opts={{ align: "start", loop: true }} className="w-full">
             <CarouselContent className="gap-4">
               {varaliCollections.map((content, index) => (
                 <CarouselItem
                   key={index}
-                  className="md:basis-1/2 lg:basis-1/4 flex-shrink-0"
+                  // - mobile shows ~85% to hint next slide
+                  // - sm: 2 per view, md: 3, lg: 4, xl: 5
+                  className="basis-1/2 md:basis-1/3 lg:basis-1/4  flex-shrink-0"
                 >
                   <Card className="p-0 bg-transparent shadow-none rounded-none border-none">
-                    <CardContent className="  flex flex-col justify-center  p-0 bg-transparent shadow-none rounded-none border-none">
-                      {/* Replace with product image */}
-                      <div className="w-full overflow-hidden">
-                        <img
-                          src={content.image}
-                          alt={content.name}
-                          className="w-full h-full object-cover"
-                        />
+                    <CardContent className="p-0 bg-transparent shadow-none rounded-none border-none">
+                      <div className="w-full overflow-hidden rounded-md">
+                        <div className="relative w-full aspect-[3/4]">
+                          <img
+                            src={content.image || "/placeholder.svg"}
+                            alt={content.name}
+                            loading="lazy"
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
-                      <div className="">
-                        <h3 className="font-semibold">{content.name}</h3>
+
+                      <div className="mt-2">
+                        <h3 className="font-semibold text-sm md:text-base">
+                          {content.name}
+                        </h3>
                       </div>
                     </CardContent>
                   </Card>
@@ -292,40 +407,35 @@ const LandingPage = () => {
               ))}
             </CarouselContent>
 
-            {/* Previous button */}
-            <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-0 z-10">
-              <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-            </CarouselPrevious>
-
-            {/* Next button */}
-            <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-0 z-10">
-              <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </CarouselNext>
+            <CarouselPrevious
+              className=" sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/90 border shadow hover:bg-background focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Previous products"
+            />
+            <CarouselNext
+              className="= sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/90 border shadow hover:bg-background focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Next products"
+            />
           </Carousel>
         </div>
-      </div>
+      </section>
 
       {/* fourth section */}
-      <div className="py-15 flex flex-col gap-5">
-        <div>
-          <h1 className="text-center text-[#472478] text-xl font-semibold">
-            Varali Collection
+      <section className="py-10 md:py-14">
+        <div className="mb-5">
+          <h1 className="text-center text-xl md:text-2xl font-semibold">
+            Best Selling
           </h1>
         </div>
-        <div className="relative w-full max-w-7xl mx-auto">
-          <Carousel opts={{ align: "start" }} className="w-full">
+        <div className="relative w-full max-w-7xl mx-auto px-4">
+          <Carousel opts={{ align: "start", loop: true }} className="w-full">
             <CarouselContent className="gap-4">
               {bestSellings.map((content, index) => (
                 <CarouselItem
                   key={index}
-                  className="md:basis-1/2 lg:basis-1/4 flex-shrink-0"
+                  className="basis-1/2 md:basis-1/3 lg:basis-1/4  flex-shrink-0"
                 >
                   <Card className="p-0 bg-transparent shadow-none rounded-none border-none">
-                    <CardContent className="  flex flex-col justify-center  p-0 bg-transparent shadow-none rounded-none border-none">
+                    <CardContent className=" flex flex-col justify-center  p-0 bg-transparent shadow-none rounded-none border-none">
                       {/* Replace with product image */}
                       <div className="w-full overflow-hidden relative">
                         <img
@@ -346,23 +456,17 @@ const LandingPage = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-
-            {/* Previous button */}
-            <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-0 z-10">
-              <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-            </CarouselPrevious>
-
-            {/* Next button */}
-            <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-0 z-10">
-              <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100">
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </CarouselNext>
+            <CarouselPrevious
+              className=" sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/90 border shadow hover:bg-background focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Previous products"
+            />
+            <CarouselNext
+              className="= sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-background/90 border shadow hover:bg-background focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Next products"
+            />
           </Carousel>
         </div>
-      </div>
+      </section>
 
       {/* fifth section */}
       <div className="">
@@ -391,7 +495,9 @@ const LandingPage = () => {
             </div>
             <span className="text-sm text-gray-600">(420 reviews)</span>
           </div>
-          <Button className="mt-4 md:mt-0 bg-blue-500 hover:bg-blue-500">Write A Review</Button>
+          <Button className="mt-4 md:mt-0 bg-blue-500 hover:bg-blue-500">
+            Write A Review
+          </Button>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -401,35 +507,133 @@ const LandingPage = () => {
         </div>
       </section>
 
-
       <section className="py-12 px-4 md:px-8 text-center bg-white">
-      <h2 className="text-2xl font-semibold text-gray-900">Follow us on Instagram</h2>
-      <p className="text-sm text-gray-600 mt-2">
-        Join our community for daily inspiration and a closer look at our creations
-      </p>
-      <Button className="mt-4 bg-purple-700 hover:bg-purple-800 text-white">
-        Visit Instagram
-      </Button>
+        <h2 className="text-2xl font-semibold text-gray-900">
+          Follow us on Instagram
+        </h2>
+        <p className="text-sm text-gray-600 mt-2">
+          Join our community for daily inspiration and a closer look at our
+          creations
+        </p>
+        <Button className="mt-4 bg-purple-700 hover:bg-purple-800 text-white">
+          Visit Instagram
+        </Button>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-6xl mx-auto">
-        {images.map((img, index) => (
-          <div key={index} className="relative group">
-            <img
-              src={img}
-              alt={`Instagram post ${index + 1}`}
-              className="w-full aspect-square object-cover rounded-md"
-            />
-            <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md">
-              <Instagram className="w-4 h-4 text-black" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-6xl mx-auto">
+          {images.map((img, index) => (
+            <div key={index} className="relative group">
+              <img
+                src={img}
+                alt={`Instagram post ${index + 1}`}
+                className="w-full aspect-square object-cover rounded-md"
+              />
+              <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md">
+                <Instagram className="w-4 h-4 text-black" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer
+        className="text-white py-10 px-4 md:px-20"
+        style={{
+          backgroundImage: `url(${footerimg})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Links Section */}
+          <div className="space-y-2">
+            <h3 className="font-semibold text-lg">Company</h3>
+            <ul className="space-y-1 text-sm">
+              <li>
+                <a href="#">About Us</a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">All Collections</a>
+              </li>
+            </ul>
+
+            {/* Social Icons */}
+            <div className="flex space-x-4 mt-4 text-xl">
+              <a href="#">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i className="fab fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i className="fab fa-youtube"></i>
+              </a>
+              <a href="#">
+                <i className="fab fa-whatsapp"></i>
+              </a>
             </div>
           </div>
-        ))}
-      </div>
-    </section>
 
-    <footer>
-      
-    </footer>
+          {/* Policy Section */}
+          <div className="space-y-2">
+            <h3 className="font-semibold text-lg">Policies</h3>
+            <ul className="space-y-1 text-sm">
+              <li>
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#">Refund Policy</a>
+              </li>
+              <li>
+                <a href="#">Shipping Policy</a>
+              </li>
+              <li>
+                <a href="#">Terms of Services</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Spacer for layout */}
+          <div className="hidden md:block"></div>
+
+          {/* Contact Section */}
+          <div className="space-y-2 text-sm">
+            <div className="text-2xl font-bold relative -left-5">
+              <img src={logo} alt="" className="h-14" />
+            </div>
+            <div className="flex items-start space-x-2">
+              <i className="fas fa-map-marker-alt mt-1" />
+              <span>
+                VARNA GS, VARALI CLOTHING Co,
+                <br />
+                Near Tali Temple, Calicut
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <i className="fas fa-envelope" />
+              <span>varaliclothing06@gmail.com</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <i className="fas fa-phone" />
+              <span>+91 8891 273 712</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <i className="fas fa-clock" />
+              <span>7 AM to 11 PM</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider and Bottom Copyright */}
+        <hr className="my-6 border-gray-400" />
+        <div className="text-center text-sm">© 2025 - Varali Clothing</div>
+      </footer>
     </div>
   );
 };
