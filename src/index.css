@@ -119,4 +119,14 @@
   }
 }
 
+@font-face {
+  font-family: "Posterama2001";
+  src: url("./assets/fonts/posterama-2001-w04-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
+
+.font-posterama {
+  font-family: "Posterama2001", sans-serif;
+}

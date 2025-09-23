@@ -366,9 +366,9 @@ const LandingPage = () => {
       </div>
 
       {/* third section */}
-      <section className="py-10 md:py-14">
+      <section className="py-10 md:py-14 flex flex-col gap-6">
         <div className="mb-5">
-          <h1 className="text-center text-xl md:text-2xl font-semibold">
+          <h1 className="text-[#472478] font-posterama text-center text-xl md:text-2xl font-semibold">
             Varali Collections
           </h1>
         </div>
@@ -420,9 +420,9 @@ const LandingPage = () => {
       </section>
 
       {/* fourth section */}
-      <section className="py-10 md:py-14">
+      <section className="py-10 md:py-14 flex flex-col gap-6">
         <div className="mb-5">
-          <h1 className="text-center text-xl md:text-2xl font-semibold">
+          <h1 className="text-[#472478] font-posterama text-center text-xl md:text-2xl font-semibold">
             Best Selling
           </h1>
         </div>
@@ -469,12 +469,12 @@ const LandingPage = () => {
       </section>
 
       {/* fifth section */}
-      <div className="">
-        <img src={crafteBanner} alt="" />
+      <div className="w-full">
+        <img src={crafteBanner} className="w-full" alt="" />
       </div>
 
       {/* sixth section */}
-      <section className="py-10 px-4 md:px-10 ">
+      <section className="py-10 px-4 md:px-10 max-w-7xl mx-auto">
         <div className="bg-gray-100 rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center space-x-4  flex-col sm:flex-row >
             <h2 className="text-xl font-semibold flex items-center">
@@ -507,7 +507,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="py-12 px-4 md:px-8 text-center bg-white">
+      <section className="py-12 px-4 md:px-8 text-center  bg-white">
         <h2 className="text-2xl font-semibold text-gray-900">
           Follow us on Instagram
         </h2>
