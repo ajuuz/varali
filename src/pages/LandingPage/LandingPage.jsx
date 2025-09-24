@@ -480,8 +480,6 @@ const LandingPage = () => {
                           alt={content.name}
                           className="w-full h-full object-cover"
                         />
-                        import {motion} from "framer-motion"; import{" "}
-                        {BiHeartCircle} from "react-icons/bi";
                         <motion.div
                           whileHover={{ scale: 1.2, rotate: 5 }}
                           whileTap={{ scale: 0.8, rotate: -10 }}
