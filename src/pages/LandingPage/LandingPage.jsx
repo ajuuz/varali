@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import logo from "@/assets/logo.png";
+import googleLogo from "@/assets/Google-Logo.png";
 import heroSectionImg1 from "@/assets/Property 1=Default.png";
 import heroSectionImg2 from "@/assets/Property 1=Variant2.png";
 import heroSectionImg3 from "@/assets/Property 1=Variant3.png";
@@ -7,6 +8,7 @@ import varaliCollectionImg1 from "@/assets/varali-collection-img-1.png";
 import varaliCollectionImg2 from "@/assets/varali-collection-img-2.png";
 import varaliCollectionImg3 from "@/assets/varali-collection-img-3.png";
 import varaliCollectionImg4 from "@/assets/varali-collection-img-4.png";
+import varaliCollectionImg5 from "@/assets/varali-collection-img-5.png";
 import bestSellingImg1 from "@/assets/best-selling-img-1.png";
 import bestSellingImg2 from "@/assets/best-selling-img-2.png";
 import bestSellingImg3 from "@/assets/best-selling-img-3.png";
@@ -18,7 +20,17 @@ import instagram4 from "@/assets/instagram-4.png";
 import crafteBanner from "@/assets/crafterbanner.png";
 import footerimg from "@/assets/footerimg.png";
 import onamCollection from "@/assets/onam-collection.png";
-import { BiCaretDown, BiHeart, BiSearch, BiShoppingBag } from "react-icons/bi";
+import {
+  BiCaretDown,
+  BiHeart,
+  BiLogoFacebook,
+  BiLogoFacebookCircle,
+  BiLogoInstagram,
+  BiLogoWhatsapp,
+  BiLogoYoutube,
+  BiSearch,
+  BiShoppingBag,
+} from "react-icons/bi";
 import {
   Carousel,
   CarouselContent,
@@ -28,15 +40,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Instagram,
-  Menu,
-  ShoppingCart,
-  Star,
-} from "lucide-react";
+import { Heart, Instagram, ShoppingCart, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ReviewCard } from "@/components/custom/ReviewCard";
 import {
@@ -70,21 +74,29 @@ const carouselItems = [
 
 const varaliCollections = [
   {
-    image: varaliCollectionImg1,
-    name: "Men's Collections",
-  },
-
-  {
-    image: varaliCollectionImg2,
-    name: "Women's Collections",
-  },
-  {
     image: varaliCollectionImg3,
-    name: "Ajrakh Handpicked Shirts",
+    name: "Men's Collections",
+    description: "For the man whowears confidence,not just clothes",
   },
   {
     image: varaliCollectionImg4,
+    name: "Women's Collections",
+    description: "Grace in every glance. Confidence in every step",
+  },
+  {
+    image: varaliCollectionImg1,
+    name: "Ajrakh Handpicked Shirts",
+    description: "Timeless prints,endless charm",
+  },
+  {
+    image: varaliCollectionImg2,
     name: "Saree Collections",
+    description: "Tradition in every fold Style in every step",
+  },
+  {
+    image: varaliCollectionImg5,
+    name: "Onam Essentials",
+    description: "Tradition draped inelegance This Onam, wear Varali",
   },
 ];
 const bestSellings = [
@@ -153,7 +165,7 @@ const reviews = [
 ];
 
 const LandingPage = () => {
-  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }))
+  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
   return (
     <div>
       {/* Header */}
@@ -165,20 +177,20 @@ const LandingPage = () => {
           </div>
 
           {/* Center: Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-6 font-robotoMedium ">
+            <a href="#" className="text-sm ">
               HOME
             </a>
-            <a href="#" className="text-sm font-medium">
+            <a href="#" className="text-sm ">
               ONAM COLLECTIONS
             </a>
-            <a href="#" className="text-sm font-medium">
+            <a href="#" className="text-sm ">
               MENS COLLECTIONS
             </a>
-            <a href="#" className="text-sm font-medium">
+            <a href="#" className="text-sm ">
               WOMENS COLLECTIONS
             </a>
-            <a href="#" className="text-sm font-medium">
+            <a href="#" className="text-sm ">
               SHOP ALL
             </a>
           </nav>
@@ -273,23 +285,25 @@ const LandingPage = () => {
             {carouselItems.map((item) => (
               <CarouselItem
                 key={item.id}
-                className="min-h-[30vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[90vh]"
+                className="min-h-[30vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[92vh]"
               >
-                <div className="relative h-[30vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] w-full">
+                <div className="relative h-[30vh] sm:h-[60vh] md:h-[70vh] lg:h-[92vh] w-full">
                   <img
                     src={item.image || "/placeholder.svg"}
                     alt={item.title}
                     className="absolute inset-0 h- w-full object-cover"
                   />
                   <div
-                    className="absolute inset-0 bg-black/30"
+                    className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
                     aria-hidden="true"
                   />
                   <div className="absolute inset-x-4 bottom-10 z-10 flex flex-col items-center justify-center text-center text-white">
-                    <h1 className="text-xl sm:text-3xl md:text-5xl font-bold mb-2 text-balance">
+                    <h1 className="text-xl  sm:text-3xl md:text-4xl font-robotoBold mb-2 text-balance">
                       {item.title}
                     </h1>
-                    <p className="text-md sm:text-lg md:text-2xl mb-6">{item.subtitle}</p>
+                    <p className="text-md sm:text-lg md:text-2xl mb-6">
+                      {item.subtitle}
+                    </p>
                     <div className="flex items-center bg-white/95  rounded-full pl-4  pr-5 py-2">
                       <input
                         type="text"
@@ -324,42 +338,42 @@ const LandingPage = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="relative w-full text-white py-8 px-4 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6"
+        className="relative  w-full text-white py-15 px-4 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6"
       >
         {/* Left Section */}
-        <div className="flex-1 text-center md:text-left">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">
-            Onam Collection
+        <div className="flex-1  text-center md:text-left ps-8 pe-18">
+          <h1 className="font-robotoMedium text-xl md:text-2xl  mb-2">
+            ONAM COLLECTION
           </h1>
-          <p className="text-sm md:text-base">
+          <p className="text-md font-robotoLight">
             Explore our exclusive Onam Collections, thoughtfully curated to
             bring elegance and tradition together for this festive season.
           </p>
         </div>
 
         {/* Countdown Section */}
-        <div className="flex-1 flex justify-center md:justify-around text-center gap-4">
+        <div className="flex-1  flex justify-center md:justify-start md:gap-14 text-center ">
           <div>
-            <h4 className="text-2xl md:text-3xl font-semibold">28</h4>
+            <h4 className="text-2xl md:text-3xl font-robotoMedium">28</h4>
             <p className="text-sm md:text-base">Days</p>
           </div>
           <div>
-            <h4 className="text-2xl md:text-3xl font-semibold">21</h4>
-            <p className="text-sm md:text-base">Hours</p>
+            <h4 className="text-2xl md:text-3xl font-robotoMedium">21</h4>
+            <p className="text-sm md:text-base ">Hours</p>
           </div>
           <div>
-            <h4 className="text-2xl md:text-3xl font-semibold">14</h4>
+            <h4 className="text-2xl md:text-3xl font-robotoMedium">14</h4>
             <p className="text-sm md:text-base">Minutes</p>
           </div>
           <div>
-            <h4 className="text-2xl md:text-3xl font-semibold">50</h4>
+            <h4 className="text-2xl md:text-3xl font-robotoMedium">50</h4>
             <p className="text-sm md:text-base">Seconds</p>
           </div>
         </div>
 
         {/* Button Section */}
-        <div className="flex-1 flex justify-center mt-4 md:mt-0">
-          <Button className="bg-white hover:bg-gray-200 text-black px-6 py-2">
+        <div className="  flex justify-end mt-4  md:mt-0 pe-12 ">
+          <Button className="bg-white rounded-full font-robotoMedium hover:bg-gray-200  text-[#472478] px-6 py-5">
             Shop Onam Collection
           </Button>
         </div>
@@ -385,14 +399,20 @@ const LandingPage = () => {
                 >
                   <Card className="p-0 bg-transparent shadow-none rounded-none border-none">
                     <CardContent className="p-0 bg-transparent shadow-none rounded-none border-none">
-                      <div className="w-full overflow-hidden rounded-md">
-                        <div className="relative w-full aspect-[3/4]">
-                          <img
-                            src={content.image || "/placeholder.svg"}
-                            alt={content.name}
-                            loading="lazy"
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
+                      <div className="group w-full relative overflow-hidden rounded-md">
+                        <img
+                          src={content.image || "/placeholder.svg"}
+                          alt={content.name}
+                          loading="lazy"
+                          className="object-cover"
+                        />
+                        <div className="w-full h-full px-10 inset-0 absolute text-center text-white bg-gradient-to-b from-[#9747FF]/70 to-[#542597]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex justify-center items-center">
+                          <div>
+                            <h5 className="font-robotoMedium">
+                              {content.description}
+                            </h5>
+                            <p className="font-posterama">VARALI</p>
+                          </div>
                         </div>
                       </div>
 
@@ -474,16 +494,16 @@ const LandingPage = () => {
       </div>
 
       {/* sixth section */}
-      <section className="py-10 px-4 md:px-10 max-w-7xl mx-auto">
+      <section className="py-10 px-4 md:px-10 max-w-5xl mx-auto">
         <div className="bg-gray-100 rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center space-x-4  flex-col sm:flex-row ">
-            <h2 className="text-xl font-semibold flex items-center">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
               <img
-                src="https://tse3.mm.bing.net/th/id/OIP.SqEICC59PL1VrdefhGEqqgHaCg?pid=Api&P=0&h=180"
+                src={googleLogo}
                 alt="Google"
-                className=" h-6 mr-2"
+                className=" h-8 mt-1"
               />
-              Rating
+              <span>Rating</span>
             </h2>
             <div className="flex items-center space-x-1">
               {[...Array(5)].map((_, i) => (
@@ -536,7 +556,7 @@ const LandingPage = () => {
       </section>
 
       <footer
-        className="text-white py-10 px-4 md:px-20"
+        className="text-white py-10 px-4 md:px-20 font-thin"
         style={{
           backgroundImage: `url(${footerimg})`,
           backgroundSize: "cover",
@@ -546,9 +566,8 @@ const LandingPage = () => {
       >
         <div className="grid md:grid-cols-4 gap-8">
           {/* Links Section */}
-          <div className="space-y-2">
-            <h3 className="font-semibold text-lg">Company</h3>
-            <ul className="space-y-1 text-sm">
+          <div className="space-y-2 flex flex-col gap-5">
+            <ul className="space-y-4 text-sm">
               <li>
                 <a href="#">About Us</a>
               </li>
@@ -564,26 +583,25 @@ const LandingPage = () => {
             </ul>
 
             {/* Social Icons */}
-            <div className="flex space-x-4 mt-4 text-xl">
+            <div className="flex space-x-2 mt-4 text-2xl">
               <a href="#">
-                <i className="fab fa-instagram"></i>
+                <BiLogoInstagram />
               </a>
               <a href="#">
-                <i className="fab fa-facebook"></i>
+                <BiLogoFacebookCircle />
               </a>
               <a href="#">
-                <i className="fab fa-youtube"></i>
+                <BiLogoYoutube />
               </a>
               <a href="#">
-                <i className="fab fa-whatsapp"></i>
+                <BiLogoWhatsapp />
               </a>
             </div>
           </div>
 
           {/* Policy Section */}
           <div className="space-y-2">
-            <h3 className="font-semibold text-lg">Policies</h3>
-            <ul className="space-y-1 text-sm">
+            <ul className="space-y-4 text-sm">
               <li>
                 <a href="#">Privacy Policy</a>
               </li>
@@ -609,7 +627,7 @@ const LandingPage = () => {
             </div>
             <div className="flex items-start space-x-2">
               <i className="fas fa-map-marker-alt mt-1" />
-              <span>
+              <span className="tracking-wider">
                 VARNA GS, VARALI CLOTHING Co,
                 <br />
                 Near Tali Temple, Calicut
