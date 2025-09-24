@@ -20,6 +20,7 @@ import instagram4 from "@/assets/instagram-4.png";
 import crafteBanner from "@/assets/crafterbanner.png";
 import footerimg from "@/assets/footerimg.png";
 import onamCollection from "@/assets/onam-collection.png";
+import { motion } from "framer-motion";
 import {
   BiCaretDown,
   BiHeart,
@@ -471,17 +472,30 @@ const LandingPage = () => {
                           alt={content.name}
                           className="w-full h-full object-cover"
                         />
-                        <BiHeartCircle
-                        size={25}
+                        import {motion} from "framer-motion"; import{" "}
+                        {BiHeartCircle} from "react-icons/bi";
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 5 }}
+                          whileTap={{ scale: 0.8, rotate: -10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 10,
+                          }}
+                          className="absolute top-2 right-2 z-10 cursor-pointer"
                           onClick={() =>
                             handleWishlisting(index, !content.isWishlisted)
                           }
-                          className={`text-xl cursor-pointer absolute top-2 right-2 z-10 ${
-                            content.isWishlisted
-                              ? " text-[#542597]"
-                              : "text-white"
-                          }`}
-                        />
+                        >
+                          <BiHeartCircle
+                            size={25}
+                            className={`${
+                              content.isWishlisted
+                                ? "text-[#542597]"
+                                : "text-white"
+                            }`}
+                          />
+                        </motion.div>
                       </div>
                       <div className="">
                         <h3 className="text-sm">{content.name}</h3>
