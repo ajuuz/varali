@@ -494,7 +494,7 @@ const LandingPage = () => {
       </div>
 
       {/* sixth section */}
-      <section className="py-10 px-4 md:px-10 max-w-5xl mx-auto">
+      <section className="py-10 px-4 md:px-30 max-w-7xl mx-auto">
         <div className="bg-gray-100 rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center space-x-4  flex-col sm:flex-row ">
             <h2 className="text-xl font-semibold flex items-center gap-2">
