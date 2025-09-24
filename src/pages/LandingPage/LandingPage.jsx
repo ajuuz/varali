@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import logo from "@/assets/logo.png";
 import googleLogo from "@/assets/Google-Logo.png";
 import heroSectionImg1 from "@/assets/Property 1=Default.png";
@@ -23,6 +23,7 @@ import onamCollection from "@/assets/onam-collection.png";
 import {
   BiCaretDown,
   BiHeart,
+  BiHeartCircle,
   BiLogoFacebook,
   BiLogoFacebookCircle,
   BiLogoInstagram,
@@ -40,7 +41,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
-import { Heart, Instagram, ShoppingCart, Star } from "lucide-react";
+import { Heart, HeartIcon, Instagram, ShoppingCart, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ReviewCard } from "@/components/custom/ReviewCard";
 import {
@@ -104,22 +105,26 @@ const bestSellings = [
     image: bestSellingImg1,
     name: "POOVILI - Printed Dothi and Linen Shi...",
     price: "4,899.0",
+    isWishlisted: false,
   },
 
   {
     image: bestSellingImg2,
     name: "POOVILI - Printed Dothi and Linen Shi...",
     price: "4,899.0",
+    isWishlisted: false,
   },
   {
     image: bestSellingImg3,
     name: "POOVILI - Printed Dothi and Linen Shi...",
     price: "4,899.0",
+    isWishlisted: false,
   },
   {
     image: bestSellingImg4,
     name: "POOVILI - Printed Dothi and Linen Shi...",
     price: "4,899.0",
+    isWishlisted: false,
   },
 ];
 
@@ -165,15 +170,25 @@ const reviews = [
 ];
 
 const LandingPage = () => {
+  const [bestSellers, setBestSellers] = useState(bestSellings);
   const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+
+  const handleWishlisting = (index, status) => {
+    setBestSellers((prev) => {
+      const data = [...prev];
+      const item = data[index];
+      item.isWishlisted = status;
+      return data;
+    });
+  };
   return (
     <div>
       {/* Header */}
       <header className="bg-[#472478] text-white">
-        <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-6">
+        <div className="mx-auto flex items-center justify-between px-4 py-5 md:px-6">
           {/* Left: Logo */}
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Varali" className="h-8 w-auto" />
+            <img src={logo} alt="Varali" className="h-6 w-auto" />
           </div>
 
           {/* Center: Desktop nav */}
@@ -297,37 +312,30 @@ const LandingPage = () => {
                     className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
                     aria-hidden="true"
                   />
-                  <div className="absolute inset-x-4 bottom-10 z-10 flex flex-col items-center justify-center text-center text-white">
-                    <h1 className="text-xl  sm:text-3xl md:text-4xl font-robotoBold mb-2 text-balance">
-                      {item.title}
-                    </h1>
-                    <p className="text-md sm:text-lg md:text-2xl mb-6">
-                      {item.subtitle}
-                    </p>
-                    <div className="flex items-center bg-white/95  rounded-full pl-4  pr-5 py-2">
-                      <input
-                        type="text"
-                        placeholder="discover your varali vibe..."
-                        className="rounded-full px-3 py-2 w-[260px] md:w-[600px] text-black focus:outline-none bg-transparent"
-                        aria-label="Search Varali"
-                        onFocus={() => autoplay.current.stop()} // stop on focus
-                        onBlur={() => autoplay.current.reset()} // resume on blur
-                      />
-                      <BiSearch
-                        size={22}
-                        className="text-black"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-
+          <div className="absolute inset-x-4 bottom-10 z-10 flex flex-col items-center justify-center text-center text-white">
+            <h1 className="text-xl  sm:text-3xl md:text-4xl font-robotoBold mb-2 text-balance">
+              EVERY STITCH TELLS YOUR STORY
+            </h1>
+            <p className="text-md sm:text-lg md:text-2xl mb-6">
+              MAKE IT A VARALI ORIGINAL
+            </p>
+            <div className="flex items-center bg-white/95  rounded-full pl-4  pr-5 py-2">
+              <input
+                type="text"
+                placeholder="discover your varali vibe..."
+                className="rounded-full px-3 py-2 w-[260px] md:w-[900px] text-black focus:outline-none bg-transparent"
+                aria-label="Search Varali"
+                onFocus={() => autoplay.current.stop()} // stop on focus
+                onBlur={() => autoplay.current.reset()} // resume on blur
+              />
+              <BiSearch size={22} className="text-black" aria-hidden="true" />
+            </div>
+          </div>
           {/* Optional controls */}
-          <CarouselPrevious className="left-2 md:left-4" />
-          <CarouselNext className="right-2 md:right-4" />
         </Carousel>
       </section>
 
@@ -449,7 +457,7 @@ const LandingPage = () => {
         <div className="relative w-full max-w-7xl mx-auto px-4">
           <Carousel opts={{ align: "start", loop: true }} className="w-full">
             <CarouselContent className="gap-4">
-              {bestSellings.map((content, index) => (
+              {bestSellers.map((content, index) => (
                 <CarouselItem
                   key={index}
                   className="basis-1/2 md:basis-1/3 lg:basis-1/4  flex-shrink-0"
@@ -463,9 +471,17 @@ const LandingPage = () => {
                           alt={content.name}
                           className="w-full h-full object-cover"
                         />
-                        <div className="border-2 rounded-full p-1 absolute top-2 right-2 z-10 text-white">
-                          <BiHeart />
-                        </div>
+                        <BiHeartCircle
+                        size={25}
+                          onClick={() =>
+                            handleWishlisting(index, !content.isWishlisted)
+                          }
+                          className={`text-xl cursor-pointer absolute top-2 right-2 z-10 ${
+                            content.isWishlisted
+                              ? " text-[#542597]"
+                              : "text-white"
+                          }`}
+                        />
                       </div>
                       <div className="">
                         <h3 className="text-sm">{content.name}</h3>
@@ -498,11 +514,7 @@ const LandingPage = () => {
         <div className="bg-gray-100 rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center space-x-4  flex-col sm:flex-row ">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <img
-                src={googleLogo}
-                alt="Google"
-                className=" h-8 mt-1"
-              />
+              <img src={googleLogo} alt="Google" className=" h-8 mt-1" />
               <span>Rating</span>
             </h2>
             <div className="flex items-center space-x-1">
@@ -556,7 +568,7 @@ const LandingPage = () => {
       </section>
 
       <footer
-        className="text-white py-10 px-4 md:px-20 font-thin"
+        className="text-white py-10 px-4 md:px-20 font-thin mt-15"
         style={{
           backgroundImage: `url(${footerimg})`,
           backgroundSize: "cover",
@@ -622,8 +634,8 @@ const LandingPage = () => {
 
           {/* Contact Section */}
           <div className="space-y-2 text-sm">
-            <div className="text-2xl font-bold relative -left-5">
-              <img src={logo} alt="" className="h-14" />
+            <div className="text-2xl font-bold relative -left-2">
+              <img src={logo} alt="" className="h-8" />
             </div>
             <div className="flex items-start space-x-2">
               <i className="fas fa-map-marker-alt mt-1" />
